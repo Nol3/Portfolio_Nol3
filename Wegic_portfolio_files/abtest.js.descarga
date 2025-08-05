@@ -1,0 +1,27 @@
+(function (win, export_obj) {
+  win['LogAnalyticsObject'] = export_obj;
+  if (!win[export_obj]) {
+    function _collect() {
+      _collect.q.push(arguments);
+    }
+    _collect.q = _collect.q || [];
+    win[export_obj] = _collect;
+  }
+  win[export_obj].l = +new Date();
+})(window, 'ABCollectEvent');
+
+// 异步加载SDK
+(function() {
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://cdn.wegic.ai/assets/js/ABTestSDK-v5.1.10.js';
+  var firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  // 参数不能随便配置，会影响用户分流后得到的结果
+  window.ABCollectEvent('init', {
+    app_id: 698414,
+    channel: 'sg',
+    enable_ab_test: true,
+  })
+  window.ABCollectEvent('start');
+})();
