@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripRecommendator - Descubre tu próximo destino</title>
+    <link rel="stylesheet" href="styles.css?v=1.0.1">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <header role="banner">
+        <nav role="navigation" aria-label="Navegación principal">
+            <div class="logo">
+                <img src="assets/logo.svg" alt="TripRecommendator Logo" width="40" height="40">
+                <span class="logo-text">TripRecommendator</span>
+            </div>
+            <div class="nav-links">
+                <a href="/api/auth/github" class="btn btn-secondary">
+                    <img src="assets/github.svg" alt="GitHub" width="15" height="15">
+                    Iniciar sesion
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section class="hero" aria-labelledby="main-heading">
+            <h1 id="main-heading">Descubre tu próximo destino</h1>
+            <p>Realiza tus busquedas o logueate con tu cuenta de GitHub para guardar tus destinos favoritos</p>
+            <form id="search-form" role="search">
+                <div class="search-container">
+                    <input type="text"
+                           id="search-input"
+                           placeholder="¿Qué tipo de destino estás buscando?"
+                           aria-label="Buscar destino">
+                    <button type="submit" class="btn" aria-label="Buscar destinos">
+                        Buscar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section id="recommendations" class="recommendations" aria-label="Recomendaciones de destinos">
+        </section>
+    </main>
+
+    <div id="map-modal" class="modal" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="close" aria-label="Cerrar mapa">&times;</button>
+            <h2 id="modal-title"></h2>
+            <div id="map" role="application" aria-label="Mapa interactivo"></div>
+        </div>
+    </div>
+
+    <div id="visitedModal" class="modal">
+        <div class="modal-content">
+            <span id="closeVisited" class="close">×</span>
+            <h2>Mis Lugares Visitados</h2>
+            <ul id="visitedList"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

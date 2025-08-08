@@ -5,18 +5,18 @@ const Skills = () => {
     {
       title: 'Frontend',
       skills: [
-        { name: 'React', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'Vue.js', level: 85 },
+        { name: 'React', level: 90 },
+        { name: 'TypeScript', level: 80 },
+        { name: 'JavaScript.js', level: 90 },
         { name: 'CSS/SCSS', level: 92 },
-        { name: 'Tailwind CSS', level: 88 },
+        { name: 'Tailwind CSS', level: 75 },
       ]
     },
     {
       title: 'Backend',
       skills: [
         { name: 'Node.js', level: 90 },
-        { name: 'Python', level: 85 },
+        { name: 'C / C++', level: 85 },
         { name: 'Express.js', level: 88 },
         { name: 'FastAPI', level: 80 },
         { name: 'GraphQL', level: 75 },
@@ -25,10 +25,10 @@ const Skills = () => {
     {
       title: 'Database & Tools',
       skills: [
-        { name: 'PostgreSQL', level: 88 },
+        { name: 'SQL', level: 88 },
         { name: 'MongoDB', level: 85 },
         { name: 'Docker', level: 80 },
-        { name: 'AWS', level: 75 },
+        { name: 'Vercel', level: 90 },
         { name: 'Git', level: 95 },
       ]
     }
@@ -50,14 +50,14 @@ const Skills = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
-            <div 
+            <div
               key={category.title}
               className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-cyan-500/30 transition-all duration-300"
             >
               <h3 className="text-xl font-semibold text-white mb-6 text-center">
                 {category.title}
               </h3>
-              
+
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skill.name} className="space-y-2">
@@ -65,11 +65,11 @@ const Skills = () => {
                       <span className="text-slate-300 font-medium">{skill.name}</span>
                       <span className="text-cyan-400 text-sm font-semibold">{skill.level}%</span>
                     </div>
-                    
+
                     <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
-                      <div 
+                      <div
                         className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-1000 ease-out"
-                        style={{ 
+                        style={{
                           width: `${skill.level}%`,
                           animationDelay: `${categoryIndex * 200 + skillIndex * 100}ms`
                         }}
@@ -87,14 +87,14 @@ const Skills = () => {
           <h3 className="text-2xl font-semibold text-white mb-8 text-center">
             Otras Competencias
           </h3>
-          
+
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              'Responsive Design', 'REST APIs', 'Microservices', 'CI/CD', 
-              'Testing', 'Agile/Scrum', 'UI/UX Design', 'DevOps',
-              'Mobile Development', 'Cloud Computing', 'Security', 'Performance Optimization'
+              'Responsive Design', 'REST APIs', 'Microservicios', 'CI/CD',
+              'Redes', 'Teldat/Cisco', 'UI/UX Design', 'DevOps',
+              'Mobile Development', 'CiberSeguridad', 'Optimización de rendimiento'
             ].map((skill) => (
-              <span 
+              <span
                 key={skill}
                 className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 rounded-full text-cyan-400 font-medium hover:from-cyan-500/20 hover:to-blue-600/20 hover:border-cyan-400/40 transition-all duration-300 cursor-default"
               >

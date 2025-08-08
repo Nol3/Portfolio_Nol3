@@ -21,14 +21,14 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({ name: '', email: '', subject: '', message: '' });
-    
+
     // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
@@ -37,19 +37,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'tu@email.com',
-      link: 'mailto:tu@email.com'
+      value: 'alejandrocp.dev@gmail.com',
+      link: 'mailto:alejandrocp.dev@gmail.com'
     },
     {
       icon: Phone,
       title: 'Teléfono',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: '+34 622713901',
+      link: 'tel:+34622713901'
     },
     {
       icon: MapPin,
       title: 'Ubicación',
-      value: 'Ciudad, País',
+      value: 'Málaga, España',
       link: '#'
     }
   ];
@@ -76,15 +76,15 @@ const Contact = () => {
                 Hablemos de tu proyecto
               </h3>
               <p className="text-slate-400 leading-relaxed mb-8">
-                Estoy siempre interesado en nuevos desafíos y oportunidades. 
-                Si tienes un proyecto en mente o simplemente quieres saludar, 
+                Estoy siempre interesado en nuevos desafíos y oportunidades.
+                Si tienes un proyecto en mente o simplemente quieres saludar,
                 no dudes en contactarme.
               </p>
             </div>
 
             <div className="space-y-6">
               {contactInfo.map(({ icon: Icon, title, value, link }) => (
-                <a 
+                <a
                   key={title}
                   href={link}
                   className="flex items-center space-x-4 p-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-all duration-300 group"
@@ -147,7 +147,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white placeholder-slate-400 transition-all duration-300"
-                      placeholder="tu@email.com"
+                      placeholder="Tu email"
                     />
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
+import fotoPerfil from '../photo/Primera.jpeg';
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -22,10 +23,12 @@ const Hero = () => {
           {/* Profile Image Placeholder */}
           <div className="w-32 h-32 mx-auto mb-8 relative">
             <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 p-1">
-              <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center">
-                <span className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  TU
-                </span>
+              <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
+                <img
+                  src={fotoPerfil}
+                  alt="Foto de perfil"
+                  className="object-cover w-full h-full rounded-full"
+                />
               </div>
             </div>
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-600/20 animate-pulse"></div>
@@ -37,7 +40,7 @@ const Hero = () => {
               Hola, soy
             </span>
             <br />
-            <span className="text-white">Tu Nombre</span>
+            <span className="text-white">Alejandro Cárdenas</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-300 mb-4 font-light">
@@ -45,26 +48,32 @@ const Hero = () => {
           </p>
 
           <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Apasionado por crear experiencias digitales excepcionales. 
-            Me especializo en desarrollo web moderno con tecnologías de vanguardia.
+            Apasionado por crear experiencias digitales excepcionales.
+            Me especializo en desarrollo web moderno, ciberseguridad, redes y sistemas operativos.
           </p>
 
           {/* Social Links */}
           <div className="flex justify-center space-x-6 mb-12">
-            <a 
-              href="#" 
+            <a
+              href="https://github.com/Nol3"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
             >
               <Github size={20} className="text-slate-300 hover:text-white" />
             </a>
-            <a 
-              href="#" 
+            <a
+              href="https://www.linkedin.com/in/alejandro-cardenas-parejo/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
             >
               <Linkedin size={20} className="text-slate-300 hover:text-white" />
             </a>
-            <a 
-              href="#" 
+            <a
+              href="mailto:alejandrocp.dev@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
             >
               <Mail size={20} className="text-slate-300 hover:text-white" />
@@ -73,13 +82,13 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <button 
+            <button
               onClick={() => scrollToSection('projects')}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
             >
               Ver Proyectos
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
               className="border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
             >
@@ -88,7 +97,7 @@ const Hero = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <button 
+          <button
             onClick={() => scrollToSection('about')}
             className="animate-bounce text-slate-400 hover:text-cyan-400 transition-colors duration-300"
           >
