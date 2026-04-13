@@ -1,103 +1,82 @@
-//import React from 'react';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import React from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Brand */}
-          <div className="space-y-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              {'<Nol3.Dev/>'}
-            </div>
-            <p className="text-slate-400 leading-relaxed">
-              Desarrollador full stack apasionado por la Tecnología y el Café.
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/Nol3"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
+    <footer className="bg-deep border-t border-white/[0.05] py-10">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Logo */}
+          <button
+            onClick={() => scrollTo('hero')}
+            className="font-mono text-sm font-medium text-white/60 hover:text-white/90 transition-colors duration-200"
+          >
+            <span className="text-blue-400/70">&lt;</span>
+            <span>AC</span>
+            <span className="text-cyan-400/70">.</span>
+            <span>dev</span>
+            <span className="text-blue-400/70"> /&gt;</span>
+          </button>
+
+          {/* Nav links */}
+          <div className="flex items-center gap-5 text-sm text-slate-500">
+            {['about', 'projects', 'skills', 'contact'].map((id) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className="hover:text-slate-300 transition-colors duration-200 capitalize"
               >
-                <Github size={20} className="text-slate-300 hover:text-white" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/alejandro-cardenas-parejo/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
-              >
-                <Linkedin size={20} className="text-slate-300 hover:text-white" />
-              </a>
-              <a
-                href="mailto:alejandrocp.dev@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
-              >
-                <Mail size={20} className="text-slate-300 hover:text-white" />
-              </a>
-            </div>
+                {id === 'about'
+                  ? 'Sobre mí'
+                  : id === 'projects'
+                  ? 'Proyectos'
+                  : id === 'skills'
+                  ? 'Habilidades'
+                  : 'Contacto'}
+              </button>
+            ))}
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-white font-semibold text-lg">Enlaces Rápidos</h3>
-            <div className="space-y-2">
-              <button
-                onClick={() => scrollToSection('about')}
-                className="block text-slate-400 hover:text-cyan-400 transition-colors duration-300"
-              >
-                Sobre Mí
-              </button>
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="block text-slate-400 hover:text-cyan-400 transition-colors duration-300"
-              >
-                Proyectos
-              </button>
-              <button
-                onClick={() => scrollToSection('skills')}
-                className="block text-slate-400 hover:text-cyan-400 transition-colors duration-300"
-              >
-                Habilidades
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="block text-slate-400 hover:text-cyan-400 transition-colors duration-300"
-              >
-                Contacto
-              </button>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-white font-semibold text-lg">Contacto</h3>
-            <div className="space-y-2 text-slate-400">
-              <p>alejandrocp.dev@gmail.com</p>
-              <p>622713901</p>
-              <p>Málaga, España</p>
-            </div>
+          {/* Social icons */}
+          <div className="flex items-center gap-1">
+            <a
+              href="https://github.com/Nol3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center text-slate-600 hover:text-slate-300 rounded-lg hover:bg-white/5 transition-all duration-200"
+              aria-label="GitHub"
+            >
+              <Github size={15} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alejandro-cardenas-parejo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center text-slate-600 hover:text-slate-300 rounded-lg hover:bg-white/5 transition-all duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={15} />
+            </a>
+            <a
+              href="mailto:alejandrocp.dev@gmail.com"
+              className="w-8 h-8 flex items-center justify-center text-slate-600 hover:text-slate-300 rounded-lg hover:bg-white/5 transition-all duration-200"
+              aria-label="Email"
+            >
+              <Mail size={15} />
+            </a>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-12 pt-8 text-center">
-          <p className="text-slate-400 flex items-center justify-center space-x-2">
-            <span>© {currentYear} Alejandro Cárdenas. Hecho con</span>
-            <Heart size={16} className="text-red-500" />
-            <span>y mucho café ☕</span>
+        {/* Bottom line */}
+        <div className="mt-8 pt-6 border-t border-white/[0.04] text-center">
+          <p className="text-slate-600 text-xs font-mono">
+            © {year} Alejandro Cárdenas — Construido con React + TypeScript + Tailwind
           </p>
         </div>
       </div>

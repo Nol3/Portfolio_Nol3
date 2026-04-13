@@ -1,102 +1,134 @@
 import React from 'react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
-const Skills = () => {
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      skills: [
-        { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'JavaScript.js', level: 90 },
-        { name: 'CSS/SCSS', level: 92 },
-        { name: 'Tailwind CSS', level: 75 },
-      ]
-    },
-    {
-      title: 'Backend',
-      skills: [
-        { name: 'Node.js', level: 90 },
-        { name: 'C / C++', level: 85 },
-        { name: 'Express.js', level: 88 },
-        { name: 'FastAPI', level: 80 },
-        { name: 'GraphQL', level: 75 },
-      ]
-    },
-    {
-      title: 'Database & Tools',
-      skills: [
-        { name: 'SQL', level: 88 },
-        { name: 'MongoDB', level: 85 },
-        { name: 'Docker', level: 80 },
-        { name: 'Vercel', level: 90 },
-        { name: 'Git', level: 95 },
-      ]
-    }
-  ];
+const CATEGORIES = [
+  {
+    name: 'Frontend',
+    accent: 'blue' as const,
+    skills: ['React', 'TypeScript', 'JavaScript', 'Next.js', 'Tailwind CSS', 'HTML / CSS', 'Vite'],
+  },
+  {
+    name: 'Backend',
+    accent: 'cyan' as const,
+    skills: ['Node.js', 'Express.js', 'FastAPI', 'Python', 'C / C++', 'GraphQL', 'REST APIs'],
+  },
+  {
+    name: 'Datos & Infra',
+    accent: 'blue' as const,
+    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'Git', 'Linux', 'Vercel', 'CI/CD'],
+  },
+];
+
+const EXTRA_SKILLS = [
+  'TCP/IP', 'Redes (Cisco/Teldat)', 'Ciberseguridad', 'Linux Admin',
+  'Bash / Shell', 'OWASP', 'SSH', 'Wireshark', 'Responsive Design',
+  'UI/UX Design', 'Microservicios', 'WebSockets',
+];
+
+const accentMap = {
+  blue: {
+    bar: 'from-blue-500 to-blue-400',
+    chip: 'bg-blue-500/[0.06] border-blue-500/15 text-blue-300/70 hover:border-blue-400/30 hover:text-blue-200',
+    icon: 'text-blue-400',
+    dot: 'bg-blue-400',
+  },
+  cyan: {
+    bar: 'from-cyan-500 to-cyan-400',
+    chip: 'bg-cyan-500/[0.06] border-cyan-500/15 text-cyan-300/70 hover:border-cyan-400/30 hover:text-cyan-200',
+    icon: 'text-cyan-400',
+    dot: 'bg-cyan-400',
+  },
+};
+
+const SkillCard = ({
+  name,
+  accent,
+  skills,
+  delay,
+}: (typeof CATEGORIES)[0] & { delay: number }) => {
+  const { ref, visible } = useScrollReveal(0.1);
+  const a = accentMap[accent];
 
   return (
-    <section id="skills" className="py-20 bg-slate-800/30">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Habilidades Técnicas
-            </span>
-          </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Tecnologías y herramientas que domino para crear soluciones excepcionales
-          </p>
+    <div
+      ref={ref}
+      className={`reveal ${visible ? 'visible' : ''} card-glow rounded-2xl overflow-hidden`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {/* Top accent bar */}
+      <div className={`h-[2px] w-full bg-gradient-to-r ${a.bar}`} />
+
+      <div className="p-6">
+        {/* Category header */}
+        <div className="flex items-center gap-2.5 mb-5">
+          <div className={`w-1.5 h-5 rounded-full bg-gradient-to-b ${a.bar}`} />
+          <h3 className="text-white font-semibold text-base">{name}</h3>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <div
-              key={category.title}
-              className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-cyan-500/30 transition-all duration-300"
+        {/* Skill chips */}
+        <div className="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span
+              key={skill}
+              className={`px-3 py-1.5 border rounded-lg text-sm font-mono transition-all duration-200 cursor-default ${a.chip}`}
             >
-              <h3 className="text-xl font-semibold text-white mb-6 text-center">
-                {category.title}
-              </h3>
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-300 font-medium">{skill.name}</span>
-                      <span className="text-cyan-400 text-sm font-semibold">{skill.level}%</span>
-                    </div>
+const Skills = () => {
+  const { ref: titleRef, visible: titleVisible } = useScrollReveal();
+  const { ref: extraRef, visible: extraVisible } = useScrollReveal(0.1);
 
-                    <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-1000 ease-out"
-                        style={{
-                          width: `${skill.level}%`,
-                          animationDelay: `${categoryIndex * 200 + skillIndex * 100}ms`
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+  return (
+    <section id="skills" className="py-24 bg-deep relative">
+      <div className="section-divider" />
+
+      <div className="container mx-auto px-6 max-w-6xl">
+        {/* Title */}
+        <div
+          ref={titleRef}
+          className={`reveal ${titleVisible ? 'visible' : ''} mb-16`}
+        >
+          <p className="text-blue-400 font-mono text-xs mb-3 tracking-[0.2em] uppercase">
+            03 — Habilidades
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            Mi stack tecnológico
+          </h2>
+          <span className="title-accent" />
+        </div>
+
+        {/* Main categories */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {CATEGORIES.map((cat, i) => (
+            <SkillCard key={cat.name} {...cat} delay={i * 100} />
           ))}
         </div>
 
-        {/* Additional Skills */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-white mb-8 text-center">
-            Otras Competencias
-          </h3>
+        {/* Extra skills */}
+        <div
+          ref={extraRef}
+          className={`reveal ${extraVisible ? 'visible' : ''} mt-14`}
+          style={{ transitionDelay: '100ms' }}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <p className="text-slate-500 text-xs font-mono uppercase tracking-[0.2em] whitespace-nowrap">
+              Redes & Sistemas
+            </p>
+            <div className="flex-1 h-px bg-gradient-to-r from-white/8 to-transparent" />
+          </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              'Responsive Design', 'REST APIs', 'Microservicios', 'CI/CD',
-              'Redes', 'Teldat/Cisco', 'UI/UX Design', 'DevOps',
-              'Mobile Development', 'CiberSeguridad', 'Optimización de rendimiento'
-            ].map((skill) => (
+          <div className="flex flex-wrap gap-2.5">
+            {EXTRA_SKILLS.map((skill) => (
               <span
                 key={skill}
-                className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 rounded-full text-cyan-400 font-medium hover:from-cyan-500/20 hover:to-blue-600/20 hover:border-cyan-400/40 transition-all duration-300 cursor-default"
+                className="px-3.5 py-2 bg-white/[0.03] border border-white/8 rounded-full text-sm text-slate-400 hover:border-blue-500/25 hover:text-slate-200 hover:bg-blue-500/[0.04] transition-all duration-200 cursor-default"
               >
                 {skill}
               </span>
