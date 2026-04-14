@@ -64,8 +64,13 @@ const Contact = () => {
       setSubmitted(true);
       setForm({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setSubmitted(false), 6000);
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Error desconocido';
+    } catch (err: unknown) {
+      let msg = 'Error desconocido';
+      if (err instanceof Error) {
+        msg = err.message;
+      } else if (err && typeof err === 'object' && 'text' in err) {
+        msg = String((err as { text: unknown }).text);
+      }
       setError(`No se pudo enviar el mensaje: ${msg}`);
     } finally {
       setSubmitting(false);
