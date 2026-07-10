@@ -10,7 +10,7 @@ interface Project {
   image: string;
   tags: string[];
   github: string;
-  demo: string;
+  demo?: string;
   accentFrom: string;
   accentTo: string;
   borderColor: string;
@@ -46,6 +46,45 @@ const PROJECTS: Project[] = [
     accentFrom: 'from-cyan-500/15',
     accentTo: 'to-blue-500/5',
     borderColor: 'border-cyan-500/15',
+  },
+  {
+    id: 3,
+    num: '03',
+    title: 'ft_transcendence',
+    description:
+      'Plataforma completa de torneos de Pong online. Backend Django + frontend Angular comunicados por WebSockets en tiempo real, autenticación OAuth2, sistema ELO y motor de juego en C/WASM. Hardening de seguridad de extremo a extremo: WAF con ModSecurity, gestión de secretos con Vault, rate limiting y cabeceras CSP/HSTS.',
+    image: '/projects/transcendence.png',
+    tags: ['Angular', 'Django', 'WebSockets', 'Docker', 'ModSecurity', 'PostgreSQL'],
+    github: 'https://github.com/Nol3/Transcendence',
+    accentFrom: 'from-blue-500/15',
+    accentTo: 'to-cyan-500/5',
+    borderColor: 'border-blue-500/15',
+  },
+  {
+    id: 4,
+    num: '04',
+    title: 'Inception',
+    description:
+      'Infraestructura completa en Docker Compose construida desde cero: NGINX con TLS, WordPress + PHP-FPM y MariaDB, cada uno en su propio contenedor con Dockerfile propio (sin imágenes prefabricadas). Redes internas aisladas, volúmenes persistentes y arranque orquestado de servicios.',
+    image: '/projects/inception.png',
+    tags: ['Docker', 'NGINX', 'MariaDB', 'WordPress', 'Linux', 'TLS'],
+    github: 'https://github.com/Nol3/Inception',
+    accentFrom: 'from-cyan-500/15',
+    accentTo: 'to-blue-500/5',
+    borderColor: 'border-cyan-500/15',
+  },
+  {
+    id: 5,
+    num: '05',
+    title: 'ft_irc',
+    description:
+      'Servidor IRC funcional escrito en C++98 desde cero, sin librerías de red externas. Manejo de múltiples clientes concurrentes con poll(), parsing completo del protocolo (JOIN, KICK, MODE, PRIVMSG, TOPIC...) y gestión de canales. Compatible con clientes IRC reales. Proyecto en pareja — contribución como co-autor.',
+    image: '/projects/ft_irc.png',
+    tags: ['C++', 'Sockets TCP/IP', 'poll()', 'Concurrencia', 'Linux'],
+    github: 'https://github.com/Kendaluski/ft_irc',
+    accentFrom: 'from-blue-500/15',
+    accentTo: 'to-cyan-500/5',
+    borderColor: 'border-blue-500/15',
   },
 ];
 
@@ -87,15 +126,17 @@ const ProjectCard = ({ project, reversed }: { project: Project; reversed: boolea
             >
               <Github size={14} />
             </a>
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 bg-[#050a18]/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-slate-400 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-200"
-              aria-label="Demo"
-            >
-              <ExternalLink size={14} />
-            </a>
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-[#050a18]/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-slate-400 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-200"
+                aria-label="Demo"
+              >
+                <ExternalLink size={14} />
+              </a>
+            )}
           </div>
         </div>
 
@@ -130,15 +171,21 @@ const ProjectCard = ({ project, reversed }: { project: Project; reversed: boolea
               <Github size={14} />
               Código
             </a>
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200"
-            >
-              Demo en vivo
-              <ArrowUpRight size={14} />
-            </a>
+            {project.demo ? (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200"
+              >
+                Demo en vivo
+                <ArrowUpRight size={14} />
+              </a>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 text-slate-600 text-xs font-mono uppercase tracking-wide">
+                Proyecto de sistemas / infraestructura
+              </span>
+            )}
           </div>
         </div>
       </div>
